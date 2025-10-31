@@ -32,13 +32,19 @@ def login_user(request):
             data = json.loads(request.body)
             username = data.get('userName')
             password = data.get('password')
-            # Authenticate user logic here
-            # ...
-            return JsonResponse({"userName": username, "status": "Authenticated"})
+            
+            # authenticate the user
+            user = authenticate(request, username=username, password=password)
+            
+            if user is not None:
+                login(request, user)
+                return JsonResponse({"userName": username, "status": "Authenticated"})
+            else:
+                return JsonResponse({"error": "Invalid credentials"}, status=401)
+                
         except json.JSONDecodeError:
             return JsonResponse({"error": "Invalid JSON"}, status=400)
     else:
-        # For GET requests, you can return a message or render a page
         return JsonResponse({"message": "Please send a POST request with login data."})
 
 # Create a `logout_request` view to handle sign out request

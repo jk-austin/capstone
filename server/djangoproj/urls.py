@@ -21,9 +21,13 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # Serve djangoapp URLs at root
-    path('', include('djangoapp.urls')),
     path('about/', TemplateView.as_view(template_name="About.html")),
     path('contact/', TemplateView.as_view(template_name="Contact.html")),
-    path('login/', TemplateView.as_view(template_name="index.html")),
+    
+    # Serve login/logout PAGES at /login/ and /logout/
+    path('login/', TemplateView.as_view(template_name="index.html"), name='login_page'),
+    path('logout/', TemplateView.as_view(template_name="index.html"), name='logout_page'),
+    
+    # app URLs for API endpoints
+    path('', include('djangoapp.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

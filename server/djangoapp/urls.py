@@ -9,14 +9,13 @@ app_name = 'djangoapp'
 urlpatterns = [
     path('', TemplateView.as_view(template_name="Home.html"), name='home'),
     
-    # # path for registration
-
-    # path for login, logout
+    # API endpoints with different paths
     path('api/login/', views.login_user, name='login_user'),
     path('api/logout/', views.logout_request, name='logout'),
     
     # path for dealer reviews view
 
     # path for add a review view
-
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    
+    
