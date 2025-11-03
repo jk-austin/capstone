@@ -7,48 +7,38 @@ const Login = ({ onClose }) => {
 
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
-  const [open, setOpen] = useState(true);
+  const [open,setOpen] = useState(true)
 
-  let login_url = window.location.origin + "/api/login/";
+  let login_url = window.location.origin+"/djangoapp/login";
 
   const login = async (e) => {
     e.preventDefault();
 
-    try {
-      const res = await fetch(login_url, {
+    const res = await fetch(login_url, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+            "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          "userName": userName,
-          "password": password
+            "userName": userName,
+            "password": password
         }),
-      });
-      
-      const json = await res.json();
-      
-      if (json.status != null && json.status === "Authenticated") {
+    });
+    
+    const json = await res.json();
+    if (json.status != null && json.status === "Authenticated") {
         sessionStorage.setItem('username', json.userName);
         setOpen(false);        
-      }
-      else if (json.error) {
-        // Show the actual error message from the server
-        alert(`Login failed: ${json.error}`);
-      }
-      else {
-        alert("The user could not be authenticated.");
-      }
-    } catch (error) {
-      // Handle network errors
-      console.error("Login error:", error);
-      alert("An error occurred during login. Please try again.");
     }
-  };
+    else {
+      alert("The user could not be authenticated.")
+    }
+};
 
   if (!open) {
     window.location.href = "/";
   };
+  
 
   return (
     <div>
