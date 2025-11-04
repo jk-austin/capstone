@@ -9,11 +9,11 @@ const Login = ({ onClose }) => {
   const [password, setPassword] = useState("");
   const [open,setOpen] = useState(true)
 
-  let login_url = window.location.origin+"/djangoapp/login";
+  let login_url = window.location.origin+"/djangoapp/login/";
 
   const login = async (e) => {
     e.preventDefault();
-
+  
     const res = await fetch(login_url, {
         method: "POST",
         headers: {
