@@ -9,7 +9,7 @@ urlpatterns = [
 
     # path for login and logout
     path('login/', views.login_user, name='login'),
-    path('logout', views.logout_request, name='logout'),
+    path('logout/', views.logout_request, name='logout'),
 
     # path for dealer reviews view
 
