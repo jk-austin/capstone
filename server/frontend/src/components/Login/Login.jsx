@@ -71,4 +71,4 @@ const Login = ({ onClose }) => {
   );
 };
 
-export default Login;
+export default LoginPanel;
