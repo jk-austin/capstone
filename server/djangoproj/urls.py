@@ -26,6 +26,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('djangoapp/', include('djangoapp.urls')),
     path('', TemplateView.as_view(template_name="Home.html")),
+    path('about/', TemplateView.as_view(template_name="about.html")),
+    path('contact/', TemplateView.as_view(template_name="contact.html")),
     path('login/', TemplateView.as_view(template_name="index.html")),
     path('register/', TemplateView.as_view(template_name="index.html")),
     re_path(r'^manifest.json$', RedirectView.as_view(url=settings.STATIC_URL + 'manifest.json')),
